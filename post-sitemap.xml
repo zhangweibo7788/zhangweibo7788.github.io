@@ -8,8 +8,16 @@
     </url>
 
     <url>
+        <loc>https://anniepzk.cn/article/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0-kNN/</loc>
+        <lastmod>2019-11-17T05:00:54.127Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://anniepzk.cn/article/hexo-theme-annie/</loc>
-        <lastmod>2019-11-16T08:48:14.622Z</lastmod>
+        <lastmod>2019-11-16T11:15:40.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -17,7 +25,7 @@
 
     <url>
         <loc>https://anniepzk.cn/article/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEJupyter-NoteBook%E8%A2%AB%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/</loc>
-        <lastmod>2019-11-04T16:25:05.721Z</lastmod>
+        <lastmod>2019-11-04T16:25:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 

@@ -9,28 +9,28 @@
     
     <url>
         <loc>https://anniepzk.cn/about/</loc>
-        <lastmod>2019-11-08T08:41:17.530Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://anniepzk.cn/tags/</loc>
-        <lastmod>2019-10-29T13:22:29.698Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://anniepzk.cn/archive/</loc>
-        <lastmod>2019-10-29T13:22:29.539Z</lastmod>
+        <lastmod>2019-11-08T08:41:18.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     
     <url>
         <loc>https://anniepzk.cn/404.html</loc>
-        <lastmod>2019-10-29T13:22:29.522Z</lastmod>
+        <lastmod>2019-10-29T13:22:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://anniepzk.cn/archive/</loc>
+        <lastmod>2019-10-29T13:22:30.000Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    
+    <url>
+        <loc>https://anniepzk.cn/tags/</loc>
+        <lastmod>2019-10-29T13:22:30.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>

@@ -18,11 +18,11 @@
 	<script async defer src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/js/buttons.js"></script>
     <title>
         
-          [Hexo] Theme Annie - Annie | Blog
+          机器学习_kNN - Annie | Blog
         
     </title>
 
-    <link rel="canonical" href="https://anniepzk.cn/article/hexo-theme-annie/">
+    <link rel="canonical" href="https://anniepzk.cn/article/机器学习-kNN/">
 
     <!-- Bootstrap Core CSS -->
     <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
@@ -122,14 +122,12 @@
                     <div class="post-heading">
                         <div class="tags">
                             
-                              <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
-                            
                         </div>
-                        <h1>[Hexo] Theme Annie</h1>
-                        <h2 class="subheading">This is hexo theme Demo.</h2>
+                        <h1>机器学习_kNN</h1>
+                        <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Annie on
-                            2019-11-04
+                            2019-11-17
                         </span>
                     </div>
                 
@@ -246,59 +244,44 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <blockquote>
-<p>This Annie theme created by <a href="https://anniepzk.cn/">Annie</a> modified from the original Porter <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></p>
+                <hr>
+<ul>
+<li>了解KNN算法的思想及其原理</li>
+<li>使用python手动实现KNN算法，并在sklearn中调用KNN算法</li>
+<li>了解监督学习和非监督学习的概念</li>
+</ul>
+<hr>
+<h2 id="关于knn">关于KNN</h2>
+<h3 id="一-算法介绍">一、算法介绍</h3>
+<p>kNN（k-NearestNeighbor）算法中文名称叫做k近邻算法，是众多机器学习算法里面最基础入门的算法。它是一个有监督的机器学习算法，既可以用来做分类任务也可以用来做回归任务。kNN算法的核心思想是未标记的样本的类别，由距离他最近的K个邻居投票来决定</p>
+<blockquote>
+<p>监督学习：给机器的训练数据拥有“标记”或者“答案”<br>
+非监督学习：给机器的训练数据是没有“标记”或者“答案”。<br>
+半监督学习：一部分数据有“标记”或者“答案”，另一部分数据没有。常见于各种原因产生的标记缺失。通常都先使用无监督学习手段对数据做处理，之后使用监督学习手段做模型的训练和预测</p>
 </blockquote>
-<h1 id="live-demo">Live Demo</h1>
-<p>Annie Blog : <a href="https://anniepzk.cn/">anniepzk.cn</a></p>
-<p><img src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/img/article/annie_blog.jpg" alt="Theme Annie"></p>
-<h1 id="install-hexo">Install Hexo</h1>
-<p>Install Node.js  and Git</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>For Mac</span><br><span class="line">brew install node</span><br><span class="line">brew install git</span><br></pre></td></tr></table></figure>
-<p>Install hexo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span>For more:https://hexo.io/zh-cn/index.html</span><br></pre></td></tr></table></figure>
-<h1 id="theme-usage">Theme Usage</h1>
-<h2 id="init">Init</h2>
-<hr>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/anniepzk/anniepzk.github.io.git ./hexo-annie</span><br><span class="line"><span class="built_in">cd</span> hexo-annie</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<h2 id="modify">Modify</h2>
-<hr>
-<p>Modify <code>_config.yml</code> file with your own info.<br>
-Especially the section:</p>
-<h3 id="deployment">Deployment</h3>
-<p>Replace to your own repo!</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">git</span></span><br><span class="line"><span class="attr">  repo:</span> <span class="attr">https://github.com/&lt;yourAccount&gt;/&lt;repo&gt;</span></span><br><span class="line"><span class="attr">  branch:</span> <span class="string">&lt;your-branch&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="sidebar-settings">Sidebar settings</h3>
-<p>Copy your avatar image to <code>&lt;root&gt;/img/</code> and modify the <code>_config.yml</code>:</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sidebar:</span> <span class="literal">true</span>    <span class="comment"># whether or not using Sidebar.</span></span><br><span class="line"><span class="attr">sidebar-about-description:</span> <span class="string">"&lt;your description&gt;"</span></span><br><span class="line"><span class="attr">sidebar-avatar:</span> <span class="string">img/&lt;your</span> <span class="string">avatar</span> <span class="string">path&gt;</span></span><br></pre></td></tr></table></figure>
-<p>and activate your personal widget you like</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">widgets:</span>         <span class="comment"># here are widget you can use, you can comment out</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">featured-tags</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">short-about</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">recent-posts</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">friends-blog</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">archive</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">category</span></span><br></pre></td></tr></table></figure>
-<p>if you want to add sidebar widget, please add at <code>layout/_widget</code>.</p>
-<h3 id="signature-setup">Signature Setup</h3>
-<p>Copy your signature image to <code>&lt;root&gt;/img/signature</code> and modify the <code>_config.yml</code>:</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">signature:</span> <span class="literal">true</span>   <span class="comment"># show signature</span></span><br><span class="line"><span class="attr">signature-img:</span> <span class="string">img/signature/&lt;your-signature-ID&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="go-to-top-icon-setup">Go to top icon Setup</h3>
-<p>My icon is using iron man, you can change to your own icon at <code>css/image</code>.</p>
-<h3 id="post-tag">Post tag</h3>
-<p>You can decide to show post tags or not.</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">home_posts_tag:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/img/article/tag.jpg" alt="home_posts_tag-true"></p>
-<h3 id="markdown-render">Markdown render</h3>
-<p>My markdown render engine plugin is <a href="https://github.com/celsomiranda/hexo-renderer-markdown-it" target="_blank" rel="noopener">hexo-renderer-markdown-it</a>.</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Markdown-it config</span></span><br><span class="line"><span class="comment">## Docs: https://github.com/celsomiranda/hexo-renderer-markdown-it/wiki</span></span><br><span class="line"><span class="attr">markdown:</span></span><br><span class="line"><span class="attr">  render:</span></span><br><span class="line"><span class="attr">    html:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    xhtmlOut:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    breaks:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    linkify:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    typographer:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    quotes:</span> <span class="string">'“”‘’'</span></span><br></pre></td></tr></table></figure>
-<p>and if you want to change the header anchor ‘ℬ’, you can go to <code>layout/post.ejs</code> to change it.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span>(<span class="string">"https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        anchors.options = &#123;</span><br><span class="line">          visible: <span class="string">'hover'</span>,</span><br><span class="line">          placement: <span class="string">'left'</span>,</span><br><span class="line">          icon: ℬ <span class="comment">// this is the header anchor "unicode" icon</span></span><br><span class="line">        &#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="hexo-basics">Hexo Basics</h2>
-<hr>
-<p>Some hexo command:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hexo new post <span class="string">"&lt;post name&gt;"</span> <span class="comment"># you can change post to another layout if you want</span></span><br><span class="line">hexo clean &amp;&amp; hexo generate <span class="comment"># generate the static file</span></span><br><span class="line">hexo server <span class="comment"># run hexo in local environment</span></span><br><span class="line">hexo deploy <span class="comment"># hexo will push the static files automatically into the specific branch(gh-pages) of your repo!</span></span><br></pre></td></tr></table></figure>
-<h1 id="have-fun-_">Have fun ^_^</h1>
-<hr>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
-<!-- Place this tag where you want the button to render. -->
-<p>Please <a class="github-button" href="https://github.com/anniepzk/anniepzk.github.io" data-icon="octicon-star" aria-label="Star anniepzk/anniepzk.github.io on GitHub" target="_blank" rel="noopener">Star</a> this Project if you like it! <a class="github-button" href="https://github.com/anniepzk" aria-label="Follow @anniepzk on GitHub" target="_blank" rel="noopener">Follow</a> would also be appreciated!<br>
-Peace!</p>
+<p>为了便于加深对kNN算法的理解，举个例子：</p>
+<p>如图所示，要想判断D是什么颜色的，找到与其距离最近的5个点，有3个是蓝色的（C），两个是橙色的（B），因此我们认为D是蓝色（C）的集合</p>
+<p><img src="https://s2.ax1x.com/2019/11/13/MYG4pt.png" alt="MYG4pt.png"></p>
+<p>因此我们说：</p>
+<blockquote>
+<p>在一个给定的类别已知的训练样本集中，已知样本集中每一个数据与所属分类的对应关系（标签）。在输入不含有标签的新样本后，将新的数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本最相似的k个数据(最近邻)的分类标签。通过多数表决等方式进行预测。即选择k个最相似数据中出现次数最多的分类，作为新数据的分类。<br>
+K近邻法不具有显式的学习过程，而是利用训练数据集对特征向量空间进行划分，并作为其分类的“模型”。</p>
+</blockquote>
+<h3 id="二-算法实现">二、算法实现</h3>
+<p>打开Jupyter Notebook，创建Python3文件</p>
+<p>首先我们准备一组数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"># raw_data_x是特征，raw_data_y是标签，0为良性，1为恶性</span><br><span class="line">raw_data_X = [[3.393533211, 2.331273381],</span><br><span class="line">              [3.110073483, 1.781539638],</span><br><span class="line">              [1.343853454, 3.368312451],</span><br><span class="line">              [3.582294121, 4.679917921],</span><br><span class="line">              [2.280362211, 2.866990212],</span><br><span class="line">              [7.423436752, 4.685324231],</span><br><span class="line">              [5.745231231, 3.532131321],</span><br><span class="line">              [9.172112222, 2.511113104],</span><br><span class="line">              [7.927841231, 3.421455345],</span><br><span class="line">              [7.939831414, 0.791631213]</span><br><span class="line">             ]</span><br><span class="line">raw_data_Y =[0, 0, 0, 0, 0, 1, 1, 1, 1, 1] </span><br><span class="line">#设置训练组</span><br><span class="line">X_train = np.array(raw_data_X)</span><br><span class="line">Y_train = np.array(raw_data_Y)</span><br><span class="line"># 将数据可视化</span><br><span class="line">plt.scatter(X_train[y_train==0,0],X_train[y_train==0,1], color=&apos;g&apos;, label = &apos;Tumor Size&apos;)</span><br><span class="line">plt.scatter(X_train[y_train==1,0],X_train[y_train==1,1], color=&apos;r&apos;, label = &apos;Time&apos;)</span><br><span class="line">plt.xlabel(&apos;Tumor Size&apos;)</span><br><span class="line">plt.ylabel(&apos;Time&apos;)</span><br><span class="line">plt.axis([0,10,0,5])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>数据可视化后生成的图片如下图所示。其中横轴是肿块大小，纵轴是发现时间。每个病人的肿块大小和发病时间构成了二维平面特征中的一个点。对于每个点，我们通过label明确是恶性肿瘤（绿色）、良性肿瘤（红色）。<br>
+<img src="https://s2.ax1x.com/2019/11/13/MYG51P.png" alt="MYG51P.png"><br>
+那么现在给出一个肿瘤患者的数据（样本点）x：[8.90933607318, 3.365731514]，是良性肿瘤还是恶性肿瘤,求距离：<br>
+我们要做的是：求点x到数据集中每个点的距离，首先计算距离，使用欧氏距离</p>
+<h3 id="knn过程">kNN过程</h3>
+<h4 id="统计知识回顾">统计知识回顾</h4>
+<blockquote>
+<p>欧拉距离<br>
+<a href="https://imgchr.com/i/MU9Sh9" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/14/MU9Sh9.md.png" alt="MU9Sh9.md.png"></a></p>
+</blockquote>
+<p><img src="https://s2.ax1x.com/2019/11/14/MUpztJ.png" alt="MUpztJ.png"></p>
 
                 
 
@@ -306,13 +289,9 @@ Peace!</p>
                 <!-- Pager -->
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/article/机器学习-kNN/" data-toggle="tooltip" data-placement="top" title="机器学习_kNN">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/article/服务器上配置Jupyter-NoteBook被远程访问/" data-toggle="tooltip" data-placement="top" title="服务器上配置Jupyter-NoteBook被远程访问">Next Post &rarr;</a>
+                            <a href="/article/hexo-theme-annie/" data-toggle="tooltip" data-placement="top" title="[Hexo] Theme Annie">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -405,7 +384,7 @@ Peace!</p>
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#live-demo"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Live Demo</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#install-hexo"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">Install Hexo</span></a></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#theme-usage"><span class="toc-nav-number">3.</span> <span class="toc-nav-text">Theme Usage</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#init"><span class="toc-nav-number">3.1.</span> <span class="toc-nav-text">Init</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#modify"><span class="toc-nav-number">3.2.</span> <span class="toc-nav-text">Modify</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#deployment"><span class="toc-nav-number">3.2.1.</span> <span class="toc-nav-text">Deployment</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#sidebar-settings"><span class="toc-nav-number">3.2.2.</span> <span class="toc-nav-text">Sidebar settings</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#signature-setup"><span class="toc-nav-number">3.2.3.</span> <span class="toc-nav-text">Signature Setup</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#go-to-top-icon-setup"><span class="toc-nav-number">3.2.4.</span> <span class="toc-nav-text">Go to top icon Setup</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#post-tag"><span class="toc-nav-number">3.2.5.</span> <span class="toc-nav-text">Post tag</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#markdown-render"><span class="toc-nav-number">3.2.6.</span> <span class="toc-nav-text">Markdown render</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#hexo-basics"><span class="toc-nav-number">3.3.</span> <span class="toc-nav-text">Hexo Basics</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#have-fun-_"><span class="toc-nav-number">4.</span> <span class="toc-nav-text">Have fun ^_^</span></a></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#关于knn"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5173;&#x4E8E;KNN</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-算法介绍"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x7B97;&#x6CD5;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-算法实现"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#knn过程"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">kNN&#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#统计知识回顾"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">&#x7EDF;&#x8BA1;&#x77E5;&#x8BC6;&#x56DE;&#x987E;</span></a></li></ol></li></ol></li></ol>
         
         </div>
       </aside>
@@ -425,8 +404,6 @@ Peace!</p>
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#Hexo" title="Hexo">Hexo</a>
-                        
                     </div>
                 </section>
                 
