@@ -18,11 +18,11 @@
 	<script async defer src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/js/buttons.js"></script>
     <title>
         
-          机器学习_kNN - Annie | Blog
+          机器学习算法_kNN的原理及实现 - Annie | Blog
         
     </title>
 
-    <link rel="canonical" href="https://anniepzk.cn/article/机器学习-kNN/">
+    <link rel="canonical" href="https://anniepzk.cn/article/kNN/">
 
     <!-- Bootstrap Core CSS -->
     <!-- <link rel="stylesheet" href="/css/bootstrap.min.css"> -->
@@ -58,6 +58,9 @@
 	<!-- <link rel="stylesheet" href="/css/toc.css"> -->
 	<!-- leezc modify -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/css/toc.css">
+
+	<!-- LeeZC added lightGallery -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/css/lightgallery.min.css">
 
     <!-- Custom Fonts -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
@@ -122,8 +125,10 @@
                     <div class="post-heading">
                         <div class="tags">
                             
+                              <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                            
                         </div>
-                        <h1>机器学习_kNN</h1>
+                        <h1>机器学习算法_kNN的原理及实现</h1>
                         <h2 class="subheading"></h2>
                         <span class="meta">
                             Posted by Annie on
@@ -181,14 +186,14 @@
 
                         
                         <li>
-                            <a href="/archive/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archive/">Archives</a>
                         </li>
                         
                     
@@ -239,19 +244,12 @@
         <div class="row">
 
             <!-- Post Container -->
-            <div class="
+            <div id="articleContent" class="
                 col-lg-8 col-lg-offset-2
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <hr>
-<ul>
-<li>了解KNN算法的思想及其原理</li>
-<li>使用python手动实现KNN算法，并在sklearn中调用KNN算法</li>
-<li>了解监督学习和非监督学习的概念</li>
-</ul>
-<hr>
-<h2 id="关于knn">关于KNN</h2>
+                <h2 id="关于knn">关于KNN</h2>
 <h3 id="一-算法介绍">一、算法介绍</h3>
 <p>kNN（k-NearestNeighbor）算法中文名称叫做k近邻算法，是众多机器学习算法里面最基础入门的算法。它是一个有监督的机器学习算法，既可以用来做分类任务也可以用来做回归任务。kNN算法的核心思想是未标记的样本的类别，由距离他最近的K个邻居投票来决定</p>
 <blockquote>
@@ -274,14 +272,93 @@ K近邻法不具有显式的学习过程，而是利用训练数据集对特征�
 <p>数据可视化后生成的图片如下图所示。其中横轴是肿块大小，纵轴是发现时间。每个病人的肿块大小和发病时间构成了二维平面特征中的一个点。对于每个点，我们通过label明确是恶性肿瘤（绿色）、良性肿瘤（红色）。<br>
 <img src="https://s2.ax1x.com/2019/11/13/MYG51P.png" alt="MYG51P.png"><br>
 那么现在给出一个肿瘤患者的数据（样本点）x：[8.90933607318, 3.365731514]，是良性肿瘤还是恶性肿瘤,求距离：<br>
-我们要做的是：求点x到数据集中每个点的距离，首先计算距离，使用欧氏距离</p>
+首先描绘出样本点所在位置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(X_train[y_train==0,0],X_train[y_train==0,1], color=&apos;g&apos;, label = &apos;Tumor Size&apos;)</span><br><span class="line">plt.scatter(X_train[y_train==1,0],X_train[y_train==1,1], color=&apos;r&apos;, label = &apos;Time&apos;)</span><br><span class="line">plt.xlabel(&apos;Tumor Size&apos;)</span><br><span class="line">plt.ylabel(&apos;Time&apos;)</span><br><span class="line">plt.axis([0,10,0,5])</span><br><span class="line">plt.scatter(x[0],x[1],color = &apos;b&apos;)c #换用蓝色描绘样本点</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/img/article/x%E6%A0%B7%E6%9C%AC%E7%82%B9.jpg" alt="Theme Annie"></p>
+<p>我们要做的是：求点x到数据集中每个点的距离，首先计算距离，使用欧氏距离</p>
 <h3 id="knn过程">kNN过程</h3>
 <h4 id="统计知识回顾">统计知识回顾</h4>
 <blockquote>
-<p>欧拉距离<br>
-<a href="https://imgchr.com/i/MU9Sh9" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2019/11/14/MU9Sh9.md.png" alt="MU9Sh9.md.png"></a></p>
+<p><strong>欧氏距离</strong>： 欧几里得度量（euclidean metric）（也称欧氏距离）是一个通常采用的距离定义，指在m维空间中两个点之间的真实距离，或者向量的自然长度（即该点到原点的距离）。在二维和三维空间中的欧氏距离就是两点之间的实际距离</p>
+<p>二维空间的公式：<br>
+$$<br>
+d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2},|X|=\sqrt{x_2^2+y_2^2}.<br>
+$$</p>
 </blockquote>
-<p><img src="https://s2.ax1x.com/2019/11/14/MUpztJ.png" alt="MUpztJ.png"></p>
+<blockquote>
+<p>$$<br>
+其中，d为点(x_2,y_2)到(x_1,y_1)之间的欧式距离；|X|为点（x_2,y_2)到原点的欧氏距离<br>
+$$</p>
+</blockquote>
+<blockquote>
+<p>三维空间的公式：<br>
+$$<br>
+d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2+(z_2-z_1)^2},|X|=\sqrt{x_2^2+y_2^2+z_2^2}.<br>
+$$</p>
+</blockquote>
+<blockquote>
+<p>n维空间的公式：<br>
+$$<br>
+d = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2+…+(x_n-y_n)^2}=\sqrt{\sum^n_{i=1}(x_i-y_i)^2}<br>
+$$</p>
+</blockquote>
+<h4 id="代码实现">代码实现</h4>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">from math import sqrt</span><br><span class="line">distances = []  # 用来记录x到样本数据集中每个点的距离</span><br><span class="line">for x_train in X_train:</span><br><span class="line">    d = sqrt(np.sum((x_train - x) ** 2))</span><br><span class="line">    distances.append(d)</span><br><span class="line">    # 使用列表生成器，一行就能搞定，对于X_train中的每一个元素x_train都进行前面的运算，把结果生成一个列表</span><br><span class="line">distances = [sqrt(np.sum((x_train - x) ** 2)) for x_train in X_train]</span><br><span class="line">distances</span><br></pre></td></tr></table></figure>
+<p>得到结果：</p>
+<blockquote>
+<p>[4.812566907609877,<br>
+5.229270827235305,<br>
+6.74975435744285,<br>
+4.698833118314581,<br>
+5.834600377093542,<br>
+1.4800180830963527,<br>
+2.35426403399514,<br>
+1.3760615737178983,<br>
+0.17488150542755523,<br>
+2.578689471080089]</p>
+</blockquote>
+<p>在求出距离列表之后，我们要找到最小的距离，需要进行一次<strong>排序操作</strong>。其实不是简单的排序，因为我们把只将距离排大小是没有意义的，我们要知道距离最小的k个点是在样本集中的位置。</p>
+<p>这里我们使用**np.argsort(array)**对一个数组进行排序，返回的是相应的排序后结果的索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">nearest = np.argsort(distances)</span><br><span class="line">nearest</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出：<br>
+array([8, 7, 5, 6, 9, 3, 0, 1, 4, 2], dtype=int64)<br>
+结果的含义是：距离最小的点在distances数组中的索引是8，第二小的点索引是7… 近到远是哪些点</p>
+</blockquote>
+<h4 id="选k值">选k值</h4>
+<p>然后我们选择k值，这里暂定为6，那就找出最近的6个点（top 6），并记录他们的标签值（y）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">k = 6</span><br><span class="line">topK_y = [y_train[i] for i in nearest[:k]]</span><br><span class="line">topK_y</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>返回值：[1, 1, 1, 1, 1, 0]</p>
+</blockquote>
+<h4 id="决策规则">决策规则</h4>
+<p>下面进入投票环节。找到与测试样本点最近的6个训练样本点的标签y是什么。可以查不同类别的点有多少个。</p>
+<p>将数组中的元素和元素出现的频次进行统计</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">from collections import Counter</span><br><span class="line">votes = Counter(topK_y)</span><br><span class="line">votes</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出： 一个字典，原数组中值为0的个数为1，值为1的个数为5</p>
+<p>Counter({1: 5, 0: 1})</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># Counter.most_common(n) 找出票数最多的n个元素，返回的是一个列表，列表中的每个元素是一个元组，元组中第一个元素是对应的元素是谁，第二个元素是频次</span><br><span class="line">votes.most_common(1)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出：[(1,5)]</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">predict_y = votes.most_common(1)[0][0] </span><br><span class="line">predict_y</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出：1</p>
+</blockquote>
+<p>得到预测的y值是1</p>
+<h4 id="自实现完整工程代码">自实现完整工程代码</h4>
+<p>相关代码源： <a href="https://github.com/japsonzbz/ML_Algorithms" target="_blank" rel="noopener">https://github.com/japsonzbz/ML_Algorithms</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from math import sqrt</span><br><span class="line">from collections import Counter</span><br><span class="line"></span><br><span class="line">class kNNClassifier:</span><br><span class="line"></span><br><span class="line">    def __init__(self, k):</span><br><span class="line">        &quot;&quot;&quot;初始化分类器&quot;&quot;&quot;</span><br><span class="line">        assert k &gt;= 1, &quot;k must be valid&quot;</span><br><span class="line">        self.k = k</span><br><span class="line">        self._X_train = None</span><br><span class="line">        self._y_train = None</span><br><span class="line"></span><br><span class="line">    def fit(self, X_train, y_train):</span><br><span class="line">        &quot;&quot;&quot;根据训练数据集X_train和y_train训练kNN分类器&quot;&quot;&quot;</span><br><span class="line">        assert X_train.shape[0] == y_train.shape[0], \</span><br><span class="line">            &quot;the size of X_train must be equal to the size of y_train&quot;</span><br><span class="line">        assert self.k &lt;= X_train.shape[0], \</span><br><span class="line">            &quot;the size of X_train must be at least k&quot;</span><br><span class="line">        self._X_train = X_train</span><br><span class="line">        self._y_train = y_train</span><br><span class="line">        return self</span><br><span class="line"></span><br><span class="line">    def predict(self,X_predict):</span><br><span class="line">        &quot;&quot;&quot;给定待预测数据集X_predict，返回表示X_predict结果的向量&quot;&quot;&quot;</span><br><span class="line">        assert self._X_train is not None and self._y_train is not None, \</span><br><span class="line">            &quot;must fit before predict!&quot;</span><br><span class="line">        assert X_predict.shape[1] == self._X_train.shape[1], \</span><br><span class="line">            &quot;the feature number of X_predict must be equal to X_train&quot;</span><br><span class="line">        y_predict = [self._predict(x) for x in X_predict]</span><br><span class="line">        return np.array(y_predict)</span><br><span class="line"></span><br><span class="line">    def _predict(self, x):</span><br><span class="line">        distances = [sqrt(np.sum((x_train - x) ** 2)) for x_train in self._X_train]</span><br><span class="line">        nearest = np.argsort(distances)</span><br><span class="line">        topK_y = [self._y_train[i] for i in nearest]</span><br><span class="line">        votes = Counter(topK_y)</span><br><span class="line">        return votes.most_common(1)[0][0]</span><br><span class="line"></span><br><span class="line">    def __repr__(self):</span><br><span class="line">        return &quot;kNN(k=%d)&quot; % self.k</span><br></pre></td></tr></table></figure>
+<p>当我们写完定义好自己的kNN代码之后，可以在jupyter notebook中使用魔法命令进行调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">%run C:\Users\shiro\.jupyter\KNN.py  #待调整</span><br><span class="line">knn_clf = kNNClassifier(k=6)</span><br><span class="line">knn_clf.fit(X_train, y_train)</span><br><span class="line">X_predict = x.reshape(1,-1)</span><br><span class="line">y_predict = knn_clf.predict(X_predict)</span><br><span class="line">y_predict</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>输出：array([1])</p>
+</blockquote>
+<h3 id="总结">总结</h3>
+<p>本次学习了第一个算法”kNN近邻算法“，了解了kNN算法的流程，并在jupyter notebook上手动实现了代码。作为机器学习的敲门砖，整个学习下来还是蛮轻松的。本次笔记参考公众号文章https://mp.weixin.qq.com/s/VslgD9CHyu8w6KQtf3WQYQ以及慕课网的学习视频：《Python3入门机器学习经典算法与应用》</p>
+<h2 id="再接再厉">再接再厉！</h2>
 
                 
 
@@ -384,7 +461,7 @@ K近邻法不具有显式的学习过程，而是利用训练数据集对特征�
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#关于knn"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5173;&#x4E8E;KNN</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-算法介绍"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x7B97;&#x6CD5;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-算法实现"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#knn过程"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">kNN&#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#统计知识回顾"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">&#x7EDF;&#x8BA1;&#x77E5;&#x8BC6;&#x56DE;&#x987E;</span></a></li></ol></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#关于knn"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">&#x5173;&#x4E8E;KNN</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#一-算法介绍"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">&#x4E00;&#x3001;&#x7B97;&#x6CD5;&#x4ECB;&#x7ECD;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#二-算法实现"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">&#x4E8C;&#x3001;&#x7B97;&#x6CD5;&#x5B9E;&#x73B0;</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#knn过程"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">kNN&#x8FC7;&#x7A0B;</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#统计知识回顾"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">&#x7EDF;&#x8BA1;&#x77E5;&#x8BC6;&#x56DE;&#x987E;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#代码实现"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">&#x4EE3;&#x7801;&#x5B9E;&#x73B0;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#选k值"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">&#x9009;k&#x503C;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#决策规则"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">&#x51B3;&#x7B56;&#x89C4;&#x5219;</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#自实现完整工程代码"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">&#x81EA;&#x5B9E;&#x73B0;&#x5B8C;&#x6574;&#x5DE5;&#x7A0B;&#x4EE3;&#x7801;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#总结"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">&#x603B;&#x7ED3;</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#再接再厉"><span class="toc-nav-number">2.</span> <span class="toc-nav-text">&#x518D;&#x63A5;&#x518D;&#x5389;&#xFF01;</span></a></li></ol>
         
         </div>
       </aside>
@@ -404,6 +481,8 @@ K近邻法不具有显式的学习过程，而是利用训练数据集对特征�
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#机器学习" title="机器学习">机器学习</a>
+                        
                     </div>
                 </section>
                 
@@ -427,6 +506,31 @@ K近邻法不具有显式的学习过程，而是利用训练数据集对特征�
         </div>
     </div>
 </article>
+
+<!-- leezc add support for mathjax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    SVG: {
+      scale: 90
+    },
+    tex2jax: {
+      inlineMath: [ ['$','$'] ],
+      displayMath: [ ['$$','$$'] ],
+      processEscapes: true,
+    }
+  });
+</script>
+<script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/mathjax@2.7.5/MathJax.js?config=TeX-AMS-MML_SVG">
+</script>
+
+
 
 
 
@@ -722,6 +826,9 @@ K近邻法不具有显式的学习过程，而是利用训练数据集对特征�
 <img src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/img/icon_wechat.png" width="0" height="0" />
 <!-- Migrate from head to bottom, no longer block render and still work -->
 
+<!-- LeeZC added lightGallery -->
+<script src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/js/lightgallery-all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/anniepzk/anniepzk.github.io/js/leezc.js"></script>
 </body>
 
 </html>
