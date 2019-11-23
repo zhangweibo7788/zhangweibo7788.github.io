@@ -2,29 +2,29 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://anniepzk.cn</loc>
+        <loc>https://tomhks.com</loc>
         <changefreq>daily</changefreq>
         <priority>1</priority>
     </url>
 
     <url>
-        <loc>https://anniepzk.cn/article/hexo-theme-annie/</loc>
-        <lastmod>2019-11-20T10:36:24.732Z</lastmod>
+        <loc>https://tomhks.com/article/hexo-theme-annie/</loc>
+        <lastmod>2019-11-20T11:07:49.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://anniepzk.cn/article/kNN/</loc>
-        <lastmod>2019-11-20T10:36:20.729Z</lastmod>
+        <loc>https://tomhks.com/article/kNN/</loc>
+        <lastmod>2019-11-20T11:07:45.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
     </url>
 
     <url>
-        <loc>https://anniepzk.cn/article/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEJupyter-NoteBook%E8%A2%AB%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/</loc>
+        <loc>https://tomhks.com/article/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%85%8D%E7%BD%AEJupyter-NoteBook%E8%A2%AB%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/</loc>
         <lastmod>2019-11-04T16:25:06.000Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
